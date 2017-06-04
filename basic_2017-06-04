@@ -1,0 +1,67 @@
+liases to directories
+alias cdproj="cd /Users/asolomon/www/Projects"
+alias cdpwww="cd /Users/asolomon/www/Projects/WWW"
+alias cdlp="cd /Users/asolomon/www/Projects/LaunchPoint3"
+alias cdwww="cd /Users/asolomon/www"
+alias cdck="cd /Users/asolomon/www/cribkeeper"
+alias cdfp="cd /Users/asolomon/www/fantasyplayer"
+alias cdvc="cd /Users/asolomon/www/vote_counter"
+alias cdlp3="cd /Users/asolomon/www/lp3prototype"
+alias startmongo="title mongodb;/Users/asolomon/mongodb/bin/mongod"
+alias consolemongo="title mongo console;/Users/asolomon/mongodb/bin/mongo"
+alias cdroot="cd /"
+alias cdhome="cd ~"
+
+# Git aliases
+alias gdev="git co mdt/develop"
+alias gldev="git co legacy-2017/develop"
+alias gstat="git status"
+alias gbr="git branch"
+alias gadd="git add ."
+alias grcon="git rebase --continue"
+alias grskip="git rebase --skip"
+alias gstash="git stash"
+alias gpop="git stash pop"
+
+# Aliased Commands
+alias srcrootbp="source /.bash_profile"
+
+# Copy root bash profile to home dir and source both
+alias srcbp="cp /.bash_profile ~/.bash_profile;source ~/.bash_profile;source /.bash_profile"
+
+# Copy root bashrc to home dir and source both
+alias srcbrc="cp /.bashrc ~/.bashrc;source ~/.bashrc;source /.bashrc"
+
+# Find the active mongo db instance running locally
+alias findmongo="ps wuax | grep mongo | grep -v grep"
+
+# Copy root vimrc to home directory
+alias srcvrc="cp /.vimrc ~/.vimrc"
+
+# Push fantasy player to heroku (deploy fantasy player)
+alias heropush="cd /Users/asolomon/www/fantasyplayer;git push;git push heroku master"
+
+# Config
+# Git branch in prompt
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+# Change the command prompt path
+export PS1="\w\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+
+# Function to rename a tab title
+function title {
+    echo -ne "\033]0;"$*"\007"
+}
+
+# Function to grab a specific git branch or set of git branches and display their names
+get_branch () {
+    git branch -a | grep $1
+}
+
+# Function to creat and cd into dir
+makedir () {
+    mkdir $1 && cd $1
+}
+
+
